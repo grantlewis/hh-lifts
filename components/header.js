@@ -13,7 +13,7 @@ export default function Header() {
           <Link href="/about">
             about
           </Link>
-          <Link href="archive">
+          <Link href="/archive">
             archive
           </Link>
         </div>
