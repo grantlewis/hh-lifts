@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Meta />
-      <div className="min-h-screen">
+      <div className="min-h-screen text-hh-gray">
         <Alert />
         <main>{children}</main>
       </div>
