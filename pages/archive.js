@@ -1,6 +1,7 @@
 import Header from '../components/header'
 import Layout from '../components/layout'
 import Container from '../components/container'
+import Body from '../components/body'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -15,7 +16,7 @@ export default function Archive({ allPosts }) {
         </Head>
         <Header />
         <Container>
-					<div className="mb-12 mt-24 max-w-2xl mx-auto">
+					<Body>
 						<h2 className="text-xl md:text-2xl lg:text-3xl font-bold">archive</h2>
 						<ul >
 							{allPosts.map(post => (
@@ -26,7 +27,7 @@ export default function Archive({ allPosts }) {
 								</li>
 							))}
 						</ul>
-					</div>			
+					</Body>	
         </Container>
       </Layout>
     </>

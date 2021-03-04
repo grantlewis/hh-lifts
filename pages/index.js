@@ -4,6 +4,7 @@ import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import Link from 'next/link'
+import Body from '../components/body'
 import PostTitle from '../components/post-title'
 import PostBody from '../components/post-body'
 import { BLOG_NAME, BLOG_TAGLINE } from '../lib/constants'
@@ -18,15 +19,17 @@ export default function Index({ post }) {
         </Head>
         <Header />
         <Container>
-          {post && (
-            <>
-              <PostTitle>{post.title}</PostTitle>
-              <PostBody content={post.content} />
-            </>
-          )}
-          <div className="max-w-2xl mx-auto text-center">
-            <Link href="/archive">see more</Link>
-          </div>
+          <Body>
+            {post && (
+              <>
+                <PostTitle>{post.title}</PostTitle>
+                <PostBody content={post.content} />
+              </>
+            )}
+            <div className="text-center">
+              <Link href="/archive">see more</Link>
+            </div>
+          </Body>
         </Container>
       </Layout>
     </>
