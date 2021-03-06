@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
-import Post from '../../components/post'
+import SimplePost from '../../components/simple-post'
 import Header from '../../components/header'
 import Layout from '../../components/layout'
 import Body from '../../components/body'
@@ -32,7 +32,7 @@ export default function Post({ post }) {
                   </title>
                   <meta property="og:image" content={HOME_OG_IMAGE_URL} />
                 </Head>
-                <Post post={post} />
+                <SimplePost post={post} />
               </article>
             </>
           )}

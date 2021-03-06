@@ -5,7 +5,7 @@ import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import Link from 'next/link'
 import Body from '../components/body'
-import Post from '../components/post'
+import SimplePost from '../components/simple-post'
 import InstagramFeed from '../components/instagramFeed'
 import { BLOG_NAME, BLOG_TAGLINE } from '../lib/constants'
 import markdownToHtml from '../lib/markdownToHtml'
@@ -21,7 +21,7 @@ export default function Index({ posts, instaPosts }) {
         <Container>
           <Body>
             {posts && posts.length > 0 && posts.map(post => (
-              <Post post={post} key={post.title} />
+              <SimplePost post={post} key={post.title} />
             ))}
             <div className="text-center">
               <Link href="/archive">see more</Link>
