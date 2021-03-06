@@ -5,12 +5,12 @@ import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import Link from 'next/link'
 import Body from '../components/body'
-import PostTitle from '../components/post-title'
-import PostBody from '../components/post-body'
+import SimplePost from '../components/simple-post'
+import InstagramFeed from '../components/instagramFeed'
 import { BLOG_NAME, BLOG_TAGLINE } from '../lib/constants'
 import markdownToHtml from '../lib/markdownToHtml'
 
-export default function Index({ post }) {
+export default function Index({ posts, instaPosts }) {
   return (
     <>
       <Layout>
@@ -20,16 +20,14 @@ export default function Index({ post }) {
         <Header />
         <Container>
           <Body>
-            {post && (
-              <>
-                <PostTitle>{post.title}</PostTitle>
-                <PostBody content={post.content} />
-              </>
-            )}
+            {posts && posts.length > 0 && posts.map(post => (
+              <SimplePost post={post} key={post.title} />
+            ))}
             <div className="text-center">
               <Link href="/archive">see more</Link>
             </div>
           </Body>
+          <InstagramFeed posts={instaPosts} />
         </Container>
       </Layout>
     </>
@@ -37,17 +35,33 @@ export default function Index({ post }) {
 }
 
 export async function getStaticProps() {
+
+  const res = await fetch(process.env.IG_TOKEN_URL);
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const token = data.Token;
+  const instaRes = await fetch(`https://graph.instagram.com/me/media?fields=id,media_url,caption&access_token=${token}`);
+  const instaData = await instaRes.json();
+  const instaPosts = instaData.data;
+
   const allPosts = getAllPosts([
     'title',
     'content'
   ])
 
-  const post = allPosts[0];
-  const content = await markdownToHtml(post.content || '')
-  post.content = content;
-  
+  const posts = allPosts.slice(0, 3);
+  for (let i = 0; i < posts.length; i++) {
+    const content = await markdownToHtml(posts[i].content || '')
+    posts[i].content = content;
+  }
 
   return {
-    props: { post },
+    props: { posts, instaPosts },
   }
 }
