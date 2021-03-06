@@ -46,7 +46,7 @@ export async function getStaticProps() {
   }
 
   const token = data.Token;
-  const instaRes = await fetch(`https://graph.instagram.com/me/media?fields=id,media_url,caption&access_token=${token}`);
+  const instaRes = await fetch(`https://graph.instagram.com/me/media?fields=media_url,caption,permalink&access_token=${token}`);
   const instaData = await instaRes.json();
   const instaPosts = instaData.data;
 
