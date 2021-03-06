@@ -5,7 +5,7 @@ export default function InstagramFeed({ posts }) {
 				return (
 					<li>
 						<a
-							href={`https://www.instagram.com/p/${post.id}`}
+							href={post.permalink}
 							key={i}
 							aria-label="view image on Instagram"
 						>
