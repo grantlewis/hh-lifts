@@ -1,7 +1,15 @@
+import { useEffect } from 'react';
 import Container from './container'
-import { EXAMPLE_PATH } from '../lib/constants'
 
-export default function Footer() {
+export default function Footer({ token }) {
+
+  useEffect(() => {
+    const feed = new Instafeed({ 
+      accessToken: token
+    });
+    feed.fun();
+  }, []);
+
   return (
     <footer className="bg-accent-1 border-t border-accent-2">
       <Container>
@@ -10,21 +18,25 @@ export default function Footer() {
             Statically Generated with Next.js.
           </h3>
           <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="https://nextjs.org/docs/basic-features/pages"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-            >
-              Read Documentation
-            </a>
-            <a
-              href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-              className="mx-3 font-bold hover:underline"
-            >
-              View on GitHub
-            </a>
+            <div id="instafeed"></div>
           </div>
         </div>
       </Container>
     </footer>
   )
 }
+
+export async function getStaticProps() {
+  const res = await fetch('https://ig.instant-tokens.com/users/ad648578-886b-4844-8945-8582c8f3e5de/instagram/17841446408356692/token?userSecret=e2j46nqfhzqnwxwtf3miz');
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: { token: data.Token }
+  }
+} 

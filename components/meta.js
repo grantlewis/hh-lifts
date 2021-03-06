@@ -37,6 +37,7 @@ export default function Meta() {
         content={`${BLOG_NAME} - ${BLOG_TAGLINE}.`}
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <script type="text/javascript" src="scripts/instafeed.min.js"></script>
     </Head>
   )
 }
