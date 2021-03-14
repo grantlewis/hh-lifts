@@ -19,8 +19,8 @@ export default function Archive({ allPosts }) {
 					<Body>
 						<h2 className="text-xl md:text-2xl lg:text-3xl font-bold">archive</h2>
 						<ul >
-							{allPosts.map(post => (
-								<li className="my-4">
+							{allPosts.map((post, i) => (
+								<li className="my-4" key={i}>
 									<Link as={`/posts/${post.slug}`} href="/posts/[slug]">
 										<a className="hover:underline">{post.title}</a>
 									</Link>
@@ -37,7 +37,8 @@ export default function Archive({ allPosts }) {
 export async function getStaticProps() {
   const allPosts = getAllPosts([
     'title',
-		'slug'
+	'slug',
+	'date'
   ])
   
   return {
