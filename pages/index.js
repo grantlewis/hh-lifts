@@ -52,7 +52,8 @@ export async function getStaticProps() {
 
   const allPosts = getAllPosts([
     'title',
-    'content'
+    'content',
+    'date'
   ])
 
   const posts = allPosts.slice(0, 3);
