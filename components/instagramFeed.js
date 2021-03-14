@@ -3,10 +3,9 @@ export default function InstagramFeed({ posts }) {
 		<ul className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
 			{posts.map((post, i) => {
 				return (
-					<li>
+					<li key={i}>
 						<a
 							href={post.permalink}
-							key={i}
 							aria-label="view image on Instagram"
 						>
 							<img
