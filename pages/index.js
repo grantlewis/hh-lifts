@@ -36,19 +36,19 @@ export default function Index({ posts, instaPosts }) {
 
 export async function getStaticProps() {
 
-  // const res = await fetch(process.env.IG_TOKEN_URL);
-  // const data = await res.json();
+  const res = await fetch(process.env.IG_TOKEN_URL);
+  const data = await res.json();
 
-  // if (!data) {
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
 
-  const token = process.env.IG_TOKEN; // data.Token;
+  const token = data.Token;
   const instaRes = await fetch(`https://graph.instagram.com/me/media?fields=media_url,caption,permalink&access_token=${token}`);
   const instaData = await instaRes.json();
-  const instaPosts = instaData.data || [];
+  const instaPosts = (instaData.data || []).slice(0, 6);
 
   const allPosts = getAllPosts([
     'title',
