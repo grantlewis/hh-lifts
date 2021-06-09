@@ -8,10 +8,12 @@ export default function InstagramFeed({ posts }) {
 							href={post.permalink}
 							aria-label="view image on Instagram"
 						>
-							<img
-								src={post.media_url}
-								atl={post.caption}
-							/>
+							<div className="aspect-w-1 aspect-h-1">
+								<img
+									src={post.media_url}
+									atl={post.caption}
+								/>
+							</div>
 						</a>
 					</li>
 				)
