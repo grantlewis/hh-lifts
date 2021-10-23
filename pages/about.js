@@ -15,7 +15,12 @@ export default function About() {
         <Header />
         <Container>
           <Body>
-            all about hh lifts
+            <p>
+              hh has been lifting since high school. 
+              lifting is where her physical and mental strength are 
+              developed and she wants to share the ability to grow 
+              both with the world.
+            </p>
           </Body>
         </Container>
       </Layout>
