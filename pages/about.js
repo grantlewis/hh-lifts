@@ -16,10 +16,9 @@ export default function About() {
         <Container>
           <Body>
             <p>
-              hh has been lifting since high school. 
-              lifting is where her physical and mental strength are 
-              developed and she wants to share the ability to grow 
-              both with the world.
+              hh started lifting in high school. 
+              lifting is her source of confidence and joy. 
+              she wants to share this.
             </p>
           </Body>
         </Container>
